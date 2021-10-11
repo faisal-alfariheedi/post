@@ -4,49 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".deledit">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/addnam"
+            android:id="@+id/inid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="User ID"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/inname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Enter Name"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/addloc"
+            android:id="@+id/inloc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Enter Location"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:inputType="textPersonName" />
 
-        <Button
-            android:id="@+id/addbut"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="save" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/delbut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="delete" />
+
+            <Button
+                android:id="@+id/edbut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="update" />
+        </LinearLayout>
 
         <Button
-            android:id="@+id/view"
+            android:id="@+id/back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="view" />
+            android:text="return" />
 
         <Button
-            android:id="@+id/eddel"
+            android:id="@+id/cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="update/delete" />
+            android:text="clean" />
 
     </LinearLayout>
 
@@ -56,9 +75,9 @@
         android:layout_width="99dp"
         android:layout_height="95dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

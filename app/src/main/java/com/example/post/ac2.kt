@@ -23,6 +23,7 @@ class ac2 : AppCompatActivity() {
     var pep: ArrayList<dat.People> = arrayListOf()
     lateinit var prog: ProgressBar
     lateinit var tvw: TextView
+    lateinit var ed:Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act2)
@@ -31,12 +32,17 @@ class ac2 : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+        ed.setOnClickListener{
+            intent = Intent(applicationContext, deledit::class.java)
+            intent.putExtra("back to",2)
+            startActivity(intent)
+        }
 
         if (apif != null) {
             apif.getdat()?.enqueue(object : Callback<List<dat.People>> {
                 override fun onResponse(call: Call<List<dat.People>>, response: Response<List<dat.People>>) {
                     for (i in response.body()!!) {
-                        pep.add(dat.People(i.name,i.location))
+                        pep.add(i)
 
                     }
                     rv.adapter?.notifyDataSetChanged()
@@ -52,6 +58,7 @@ class ac2 : AppCompatActivity() {
             })
         }
 
+
     }
 
 
@@ -64,6 +71,7 @@ class ac2 : AppCompatActivity() {
         apif = APIClient().getClient()?.create(APIInterface::class.java)!!
         tvw=findViewById(R.id.wait)
         prog=findViewById(R.id.progressBar)
+        ed=findViewById(R.id.eddel)
         wait(true)
     }
     fun viewusers() {

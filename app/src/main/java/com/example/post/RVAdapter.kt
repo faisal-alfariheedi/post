@@ -23,6 +23,7 @@ class RVAdapter(private val rv: ArrayList<dat.People>): RecyclerView.Adapter<RVA
             var rvlisting2=findViewById<TextView>(R.id.rvlisting2)
             rvlisting.text = rvv.name
             rvlisting2.text = rvv.location
+            findViewById<TextView>(R.id.ID).text= rvv.pk.toString()
 
 
         }

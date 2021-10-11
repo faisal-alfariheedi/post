@@ -7,6 +7,8 @@ class dat {
     var data:ArrayList<People>?=null
 
     class People {
+        @SerializedName("pk")
+        var pk:Int?=null
         @SerializedName("name")
         var name: String? = null
 

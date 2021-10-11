@@ -1,15 +1,8 @@
 package com.example.post
 
-import android.app.AlertDialog
-import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.*
 import androidx.core.view.isVisible
 import retrofit2.Call
@@ -23,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var inloc:EditText
     lateinit var prog:ProgressBar
     lateinit var tvw:TextView
+    lateinit var ed:Button
     val apif = APIClient().getClient()?.create(APIInterface::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +30,16 @@ class MainActivity : AppCompatActivity() {
             if(addpeople(f)){
                 inname.setText("")
                 inloc.setText("")
-                Toast.makeText(applicationContext, "Save Success!", Toast.LENGTH_LONG).show()
+
             }
         }
         vbut.setOnClickListener{
             viewusers()
+        }
+        ed.setOnClickListener{
+            intent = Intent(applicationContext, deledit::class.java)
+            intent.putExtra("back to",1)
+            startActivity(intent)
         }
     }
     fun init(){
@@ -50,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         inloc=findViewById(R.id.addloc)
         tvw=findViewById(R.id.wait)
         prog=findViewById(R.id.progressBar)
+        ed=findViewById(R.id.eddel)
     }
 
     private fun addpeople(f: dat.People):Boolean {
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         wait(true)
 
         if (apif != null) {
-            apif.addUser(f).enqueue(object : Callback<dat.People> {
+            apif.adddat(f).enqueue(object : Callback<dat.People> {
                 override fun onResponse(call: Call<dat.People>, response: Response<dat.People>) {
                     wait(false)
                     re=true
